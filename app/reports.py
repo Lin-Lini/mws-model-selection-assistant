@@ -160,7 +160,7 @@ def build_report(s: Scenario, recs: list[Recommendation], snap: CatalogSnapshot)
     lines.append("")
 
     lines.append("Пояснения и ограничения")
-    lines.append("- Источник цен и списка моделей: документация MWS, полученная во время запроса. В тестовом режиме могут использоваться локальные локальные фикстуры.")
+    lines.append("- Источник цен и списка моделей: документация MWS, полученная во время запроса. В тестовом режиме могут использоваться локальные фикстуры.")
     if getattr(snap, "promo_note", None):
         st = "акция активна" if getattr(snap, "promo_active", False) else "акция неактивна для текущей даты"
         lines.append(f"- {snap.promo_note}. Статус: {st}.")
