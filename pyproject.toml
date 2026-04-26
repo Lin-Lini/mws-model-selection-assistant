@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mws-model-selection-assistant"
+version = "0.1.0"
+description = "OpenAI-compatible assistant that recommends MWS GPT Model Hub models using live documentation and deterministic pricing"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Candidate" }
+]
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "pydantic>=2.8.2",
+  "requests>=2.32.3",
+  "google-adk>=1.31.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.2",
+  "requests>=2.32.3",
+]
+
+[project.scripts]
+mws-model-selector = "app.server:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-q"

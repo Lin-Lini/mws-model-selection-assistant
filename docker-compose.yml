@@ -1,0 +1,44 @@
+services:
+  assistant:
+    build:
+      context: .
+    image: mws-model-selection-assistant:local
+    init: true
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8000
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      REQUEST_TIMEOUT_SECONDS: ${REQUEST_TIMEOUT_SECONDS:-15}
+      SESSION_TTL_SECONDS: ${SESSION_TTL_SECONDS:-7200}
+      MAX_BODY_BYTES: ${MAX_BODY_BYTES:-1048576}
+      MWS_FIXTURE_DIR: ${MWS_FIXTURE_DIR:-}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=3).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
+  tests:
+    build:
+      context: .
+    image: mws-model-selection-assistant:local
+    init: true
+    command: ["pytest", "-q"]
+    environment:
+      LOG_LEVEL: WARNING
+
+  pentest:
+    build:
+      context: .
+    image: mws-model-selection-assistant:local
+    init: true
+    depends_on:
+      assistant:
+        condition: service_healthy
+    command: ["python", "scripts/pentest_runner.py"]
+    environment:
+      BASE_URL: http://assistant:8000
+      LOG_LEVEL: WARNING

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+*.zip

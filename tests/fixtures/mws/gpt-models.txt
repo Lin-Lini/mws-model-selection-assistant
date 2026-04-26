@@ -1,0 +1,12 @@
+# Доступные модели
+
+deepseek-r1-distill-qwen-32b DeepSeek Text Text 128 32
+gemma-3-27b-it Google Text, Image Text 128 27
+llama-3.3-70b-instruct Meta Text Text 128 70
+qwen3-32b QWEN Text Text 40 32
+qwen3-235b-instruct QWEN Text Text 256 235
+qwen3-coder-480b-a35b QWEN Text Text 256 480
+glm-4.6-357b Z.ai Text Text 200 357
+kimi-k2-instruct Moonshot AI Text, Image Text 128 1024
+bge-multilingual-gemma2 BAAI Text Embedding 8 9
+bge-m3 BAAI Text Embedding 8 0.6
