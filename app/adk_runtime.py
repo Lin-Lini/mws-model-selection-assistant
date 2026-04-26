@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 APP_NAME = "mws_model_selector"
 DEFAULT_USER_ID = "openai_api_user"
 
-try:  # pragma: no cover - covered in environments with google-adk installed.
+try:  
     from google.adk.agents import BaseAgent, SequentialAgent
     from google.adk.agents.invocation_context import InvocationContext
     from google.adk.events import Event, EventActions
@@ -33,7 +33,7 @@ try:  # pragma: no cover - covered in environments with google-adk installed.
     from pydantic import PrivateAttr
 
     ADK_AVAILABLE = True
-except ImportError:  # pragma: no cover - exercised only in minimal CI sandboxes.
+except ImportError:  
     ADK_AVAILABLE = False
 
 
